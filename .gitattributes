@@ -2,5 +2,5 @@
 *.css linguist-language=Jupyter Notebook
 *.html linguist-language=Jupyter Notebook
 *.png linguist-language=Jupyter Notebook
-*.jif linguist-language=Jupyter Notebook
+*.jpg linguist-language=Jupyter Notebook
 *.h5 linguist-language=Jupyter Notebook
