@@ -1,0 +1,8 @@
+*.js linguist-language=Jupyter Notebook
+*.css linguist-language=Jupyter Notebook
+*.html linguist-language=Jupyter Notebook
+*.png linguist-language=Jupyter Notebook
+*.jpg linguist-language=Jupyter Notebook
+*.h5 linguist-language=Jupyter Notebook
+*.ipynb linguist-language=Jupyter Notebook
+*.mat linguist-language=Jupyter Notebook
