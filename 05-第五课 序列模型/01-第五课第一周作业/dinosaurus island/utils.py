@@ -63,7 +63,8 @@ def rnn_step_backward(dy, gradients, parameters, x, a, a_prev):
     return gradients
 
 def update_parameters(parameters, gradients, lr):
-
+    #print("parameters['Wax'].shape=",parameters['Wax'].shape)
+    #print("gradients['dWax'].shape=",gradients['dWax'].shape)
     parameters['Wax'] += -lr * gradients['dWax']
     parameters['Waa'] += -lr * gradients['dWaa']
     parameters['Wya'] += -lr * gradients['dWya']
@@ -71,6 +72,8 @@ def update_parameters(parameters, gradients, lr):
     parameters['by']  += -lr * gradients['dby']
     return parameters
 
+# X -- list of integers, where each integer is a number that maps to a character in the vocabulary.
+# Y -- list of integers, exactly the same as X but shifted one index to the left.
 def rnn_forward(X, Y, a0, parameters, vocab_size = 27):
     
     # Initialize x, a and y_hat as empty dictionaries
@@ -112,12 +115,14 @@ def rnn_backward(X, Y, parameters, cache):
     gradients['db'], gradients['dby'] = np.zeros_like(b), np.zeros_like(by)
     gradients['da_next'] = np.zeros_like(a[0])
     
+    #print("##Wax.shape=", Wax.shape)
+    #print("##dWax.shape=", gradients['dWax'].shape)
     ### START CODE HERE ###
     # Backpropagate through time
     for t in reversed(range(len(X))):
         dy = np.copy(y_hat[t])
         dy[Y[t]] -= 1
-        gradients = rnn_step_backward(dy, gradients, parameters, x[t], a[t], a[t-1])
+        gradients = rnn_step_backward(dy, gradients, parameters, x[t], a[t], a[t-1]) #gradients是求和所有时间的
     ### END CODE HERE ###
     
     return gradients, a
